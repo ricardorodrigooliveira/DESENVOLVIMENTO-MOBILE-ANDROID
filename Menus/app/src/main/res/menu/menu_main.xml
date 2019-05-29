@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/mniConfig"
+        android:title="@string/configuracoes"
+        app:showAsAction="never">
+        <menu>
+            <item
+                android:id="@+id/mniPerfil"
+                android:title="Perfil"/>
+
+            <item
+                android:id="@+id/mniAvancado"
+                android:title="Avançado"/>
+        </menu>
+
+    </item>
+
+    <item
+        android:id="@+id/mniSobre"
+        android:title="@string/sobre"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/mniSair"
+        android:title="Sair"
+        app:showAsAction="never"/>
+
+</menu>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ConsumirAPIs</string>
+    <string name="erro_ao_sonsultar_api">Erro ao consultar a API</string>
+</resources>

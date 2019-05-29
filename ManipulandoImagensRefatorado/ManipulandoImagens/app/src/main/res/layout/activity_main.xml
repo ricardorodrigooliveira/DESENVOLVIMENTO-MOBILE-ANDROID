@@ -1,0 +1,37 @@
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/p1"
+        android:id="@+id/imgPessoa"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pessoa 01"
+        android:onClick="alterarImagem"
+        android:id="@+id/btnPessoa01"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pessoa 02"
+        android:onClick="alterarImagem"
+        android:id="@+id/btnPessoa02"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pessoa 03"
+        android:onClick="alterarImagem"
+        android:id="@+id/btnPessoa03"/>
+
+</LinearLayout>
