@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Exemplos de SP</string>
+    <string name="digite_seu_usuario">Digite seu usuário</string>
+    <string name="digite_sua_senha">Digite sua senha</string>
+    <string name="manter_me_conectado">Manter-me conectado</string>
+    <string name="login">Login</string>
+</resources>
