@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Exemplo de File</string>
+    <string name="informe_um_texto_abaixo">Informe um texto abaixo</string>
+    <string name="salvar">Salvar</string>
+    <string name="ler">Ler</string>
+    <string name="arquivo_criado_com_sucesso">arquivo criado com sucesso</string>
+</resources>
