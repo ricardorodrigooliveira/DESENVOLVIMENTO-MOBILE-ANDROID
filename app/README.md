@@ -4,7 +4,7 @@
 
 	Ele aceita comandos SQL para criação de tabelas, consultas, etc... (vide
 
-	*http://www.sqlite.org/lang.html*)
+	**http://www.sqlite.org/lang.html**)
 
 	Contudo, apresenta algumas limitações:
 		* Suporta apenas os tipos de dados TEXT, INTEGER e REAL;
@@ -16,14 +16,14 @@
 	O SQLite separa instruções DDL de DML;
 	
 	As instruções DDL para a criação da estrutura do banco devem ficar em uma  
-	classe que estende *SQLiteOpenHelper*;
+	classe que estende **SQLiteOpenHelper**;
 
-	Nela, os métodos *onCreate* (que cria o banco e suas tabelas) e *onUpdate*  
+	Nela, os métodos **onCreate** (que cria o banco e suas tabelas) e **onUpdate**  
 	(atualiza a estrutura do banco) devem ser implementados;
 	
-	Além disso, a classe *SQLiteOpenHelper* possui o seguinte construtor:  
+	Além disso, a classe **SQLiteOpenHelper** possui o seguinte construtor:  
 	
-	*SQLiteOpenHelper(Context P1, String P2, CursorFactory P3, int P4)*  
+	**SQLiteOpenHelper(Context P1, String P2, CursorFactory P3, int P4)**  
 
 	Onde:
 	* P1 - Contexto associado ao banco (aplicação);
@@ -32,11 +32,11 @@
 	* P4 - Versão do banco de dados (todas as vezes que a versão é  
 		atualizada, o método OnUpdate é executado).  
 		
-	*public class MeuDb extends SQLiteOpenHelper {*
+	**public class MeuDb extends SQLiteOpenHelper {**
 
- 		*public MeuDb(Context context) {*  
- 			*super(context, "MeuDb", null, 1);*
- 		*}*
+ 		**public MeuDb(Context context) {**  
+ 			**super(context, "MeuDb", null, 1);**
+ 		**}**
  		
  		*@Override*  
  		*public void onCreate(SQLiteDatabase db) {*
