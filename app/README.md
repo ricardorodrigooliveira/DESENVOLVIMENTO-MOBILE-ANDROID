@@ -111,14 +111,14 @@ Onde:
 **P7** - cláusula **order by**;
 
 ```java 
-  Cursor c = db.query(        
-  "TAB*CLIENTE",              
-  new String[]{"NOM*CLIENTE"},
-  "COD*CLIENTE = ?",          
-  new String[]{"3"},          
-  null,                       
-  null,                       
-  "NOM*CLIENTE");                                 
+  Cursor c = db.query(
+  	"TAB_CLIENTE",              
+  	new String[]{"NOM_CLIENTE"},
+  	"COD_CLIENTE = ?",          
+  	new String[]{"3"},          
+  	null,                       
+  	null,                       
+  	"NOM_CLIENTE");                                 
 ``` 	                                                
    	                                             
                                         
