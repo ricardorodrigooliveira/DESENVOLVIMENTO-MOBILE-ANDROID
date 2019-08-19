@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Exemplo de SQLite</string>
+    <string name="novo_cliente">Novo Cliente</string>
+    <string name="informe_o_e_mail">Informe o e-mail:</string>
+    <string name="valida_campos_nome_email">Informe os campos corretamente</string>
+    <string name="sucesso_insere_cliente">Cliente inserido com sucesso!</string>
+</resources>
