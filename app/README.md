@@ -1,3 +1,5 @@
+![Capa](https://github.com/ricardorodrigooliveira/DesenvolvimentoMobileAndroid/blob/master/imagens/persistencia.JPG)
+
 # SQLITE
 
 O Android possui um banco de dados integrado denominado SQLite;
