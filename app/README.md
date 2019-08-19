@@ -4,7 +4,7 @@
 
 	Ele aceita comandos SQL para criação de tabelas, consultas, etc... (vide
 
-	_http://www.sqlite.org/lang.html_)
+	*http://www.sqlite.org/lang.html*)
 
 	Contudo, apresenta algumas limitações:
 		* Suporta apenas os tipos de dados TEXT, INTEGER e REAL;
@@ -16,14 +16,14 @@
 	O SQLite separa instruções DDL de DML;
 	
 	As instruções DDL para a criação da estrutura do banco devem ficar em uma  
-	classe que estende _SQLiteOpenHelper_;
+	classe que estende *SQLiteOpenHelper*;
 
-	Nela, os métodos _onCreate_ (que cria o banco e suas tabelas) e _onUpdate_  
+	Nela, os métodos *onCreate* (que cria o banco e suas tabelas) e *onUpdate*  
 	(atualiza a estrutura do banco) devem ser implementados;
 	
-	Além disso, a classe _SQLiteOpenHelper_ possui o seguinte construtor:  
+	Além disso, a classe *SQLiteOpenHelper* possui o seguinte construtor:  
 	
-	_SQLiteOpenHelper(Context P1, String P2, CursorFactory P3, int P4)_  
+	*SQLiteOpenHelper(Context P1, String P2, CursorFactory P3, int P4)*  
 
 	Onde:
 	* P1 - Contexto associado ao banco (aplicação);
@@ -32,47 +32,47 @@
 	* P4 - Versão do banco de dados (todas as vezes que a versão é  
 		atualizada, o método OnUpdate é executado).  
 		
-	_public class MeuDb extends SQLiteOpenHelper {_
+	*public class MeuDb extends SQLiteOpenHelper {*
 
- 		_public MeuDb(Context context) {_  
- 			_super(context, "MeuDb", null, 1);_
- 		_}_
+ 		*public MeuDb(Context context) {*  
+ 			*super(context, "MeuDb", null, 1);*
+ 		*}*
  		
- 		_@Override_  
- 		_public void onCreate(SQLiteDatabase db) {_
- 			_final String sql = "CREATE TABLE TAB_CLIENTE (COD_CLIENTE INTEGER_
- 			_PRIMARY KEY AUTOINCREMENT, NOM_CLIENTE TEXT)";_
+ 		*@Override*  
+ 		*public void onCreate(SQLiteDatabase db) {*
+ 			*final String sql = "CREATE TABLE TAB*CLIENTE (COD*CLIENTE INTEGER*
+ 			*PRIMARY KEY AUTOINCREMENT, NOM*CLIENTE TEXT)";*
  			
- 			_db.execSQL(sql);_
- 		_}_
+ 			*db.execSQL(sql);*
+ 		*}*
  
- 		_@Override  
- 			_public void onUpgrade(SQLiteDatabase db, int vAntiga, int vNova) {_  
- 				_db.execSQL("DROP TABLE IF EXISTS TAB_CLIENTE");_  
- 				_onCreate(db);_  
- 			_}_
-	_}_  
+ 		*@Override  
+ 			*public void onUpgrade(SQLiteDatabase db, int vAntiga, int vNova) {*  
+ 				*db.execSQL("DROP TABLE IF EXISTS TAB*CLIENTE");*  
+ 				*onCreate(db);*  
+ 			*}*
+	*}*  
 	
 	Para executar instruções DML é necessário abrir o banco de dados por meio  
-	do método _getWritableDatabase_ que retorna um objeto do tipo  
-	_SQLiteDatabase_;  
+	do método *getWritableDatabase* que retorna um objeto do tipo  
+	*SQLiteDatabase*;  
 	
-	A classe _SQLiteDatabase_ oferece os métodos _insert, delete e update_:
+	A classe *SQLiteDatabase* oferece os métodos *insert, delete e update*:
 	
-	_insert (String P1, String P2, ContentValues P3)_, onde:  
-	_P1_ é o nome da tabela, _P2_ a forma de tratamento de valores nulos (opcional) e  
-	_P3_ os valores a serem inseridos. O insert retorna um long com o ID gerado para o  
+	*insert (String P1, String P2, ContentValues P3)*, onde:  
+	*P1* é o nome da tabela, *P2* a forma de tratamento de valores nulos (opcional) e  
+	*P3* os valores a serem inseridos. O insert retorna um long com o ID gerado para o  
 	registro inserido;  
 	
 	update(String P1, ContentValues P2, String P3, String[] P4), onde P1 é o
 	nome da tabela, P2 os valores que serão atualizados, P3 a cláusula where e P4
 	os parâmetros da cláusula where;  
 	
-	_delete(String P1, String P2, String[] P3)_, onde _P1_ é o nome da tabela, _P2_ a
-	cláusula where e _P3_ os parâmetros da cláusula where;  
+	*delete(String P1, String P2, String[] P3)*, onde *P1* é o nome da tabela, *P2* a
+	cláusula where e *P3* os parâmetros da cláusula where;  
 	
 	Os valores a serem utilizados nas instruções insert e update são encapsulados em objetos  
-	da classe _ContentValues_;  
+	da classe *ContentValues*;  
 	A classe ContentValues possui um método put que permite informarmos pares contendo  
 	nome da coluna e valor;  
 	Exemplo:  
@@ -89,35 +89,35 @@
 		// Apaga o registro onde COD_CLIENTE = 2  
 		db.delete("TAB_CLIENTE", "COD_CLIENTE = ?", new String[]{"2"});  
 		
-	Consultas podem ser realizadas na base de dados por meio do método _query_ da classe  
-	_SQLiteDatabase_ que retorna um objeto _Cursor_, utilizado para manipular o conjunto de  
+	Consultas podem ser realizadas na base de dados por meio do método *query* da classe  
+	*SQLiteDatabase* que retorna um objeto *Cursor*, utilizado para manipular o conjunto de  
 	resultados obtidos;  
 	
-	_Cursor query (String P1, String[] P2, String P3, String[] P4, String P5, String P6,_
-	_String P7)_
+	*Cursor query (String P1, String[] P2, String P3, String[] P4, String P5, String P6,*
+	*String P7)*
 
 	
 	Onde:																		 ------------------------------
-	_P1_ - nome da tabela;                    |  Cursor c = db.query(        |
-	_P2_ - colunas desejadas;                 |  "TAB_CLIENTE",              |
-	_P3_ - cláusula _where_;                    |  new String[]{"NOM_CLIENTE"},|
-	_P4_ - parâmetros da cláusula _where_;      |  "COD_CLIENTE = ?",          |
-	_P5_ - cláusula _group by_;                 |  new String[]{"3"},          |
-	_P6_ - cláusula _having_;                   |  null,                       |
-	_P7_ - cláusula _order by_;                 |  null,                       |
-  	                                      |  "NOM_CLIENTE");             |
+	*P1* - nome da tabela;                    |  Cursor c = db.query(        |
+	*P2* - colunas desejadas;                 |  "TAB*CLIENTE",              |
+	*P3* - cláusula *where*;                    |  new String[]{"NOM*CLIENTE"},|
+	*P4* - parâmetros da cláusula *where*;      |  "COD*CLIENTE = ?",          |
+	*P5* - cláusula *group by*;                 |  new String[]{"3"},          |
+	*P6* - cláusula *having*;                   |  null,                       |
+	*P7* - cláusula *order by*;                 |  null,                       |
+  	                                      |  "NOM*CLIENTE");             |
     	                                     ------------------------------
                                          
 	A classe Cursor oferece mecanismos de manipulação dos dados por meio de métodos:
 	
-	* _getCount()_ ? total de registros recuperados;
-	* _moveToFirst()_ ? posiciona o cursor no primeiro registro do conjunto de dados;
-	* _moveToNext()_ ? move para o próximo registro. Retorna false caso não existam mais  
+	* *getCount()* ? total de registros recuperados;
+	* *moveToFirst()* ? posiciona o cursor no primeiro registro do conjunto de dados;
+	* *moveToNext()* ? move para o próximo registro. Retorna false caso não existam mais  
 		registros no conjunto de dados;  
-	* _getInt(int P1), getDouble(int P1), getFloat(int P1), getString(int P1)_ ?  
+	* *getInt(int P1), getDouble(int P1), getFloat(int P1), getString(int P1)* ?  
 		retorna o valor de uma coluna informada no parâmetro P1 conforme o tipo de dado  
 		especificado no método;  
-	* _close()_ ? fecha o cursor;  
+	* *close()* ? fecha o cursor;  
 	
 	 --------------------------------------------------------------------
 	|Exemplo:                                                            |
