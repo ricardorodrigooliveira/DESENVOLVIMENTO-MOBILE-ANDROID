@@ -31,28 +31,28 @@ Onde:
 * P3 - Cursor padronizado para a pesquisa de dados (pode ser null);
 * P4 - Versão do banco de dados (todas as vezes que a versão é  
 	atualizada, o método OnUpdate é executado).  
-	
+```java	
 **public class MeuDb extends SQLiteOpenHelper {**
 
- 	**public MeuDb(Context context) {**  
- 		**super(context, "MeuDb", null, 1);**
- 	**}**
+**public MeuDb(Context context) {**  
+**super(context, "MeuDb", null, 1);**
+**}**
  	
- 	*@Override*  
- 	*public void onCreate(SQLiteDatabase db) {*
- 		*final String sql = "CREATE TABLE TAB*CLIENTE (COD*CLIENTE INTEGER*
- 		*PRIMARY KEY AUTOINCREMENT, NOM*CLIENTE TEXT)";*
- 		
- 		*db.execSQL(sql);*
- 	*}*
+**@Override**  
+**public void onCreate(SQLiteDatabase db) {**
+**final String sql = "CREATE TABLE TAB*CLIENTE (COD*CLIENTE INTEGER**
+**PRIMARY KEY AUTOINCREMENT, NOM*CLIENTE TEXT)";**
+		
+**db.execSQL(sql);**
+**}**
  
- 	*@Override  
- 		*public void onUpgrade(SQLiteDatabase db, int vAntiga, int vNova) {*  
- 			*db.execSQL("DROP TABLE IF EXISTS TAB*CLIENTE");*  
- 			*onCreate(db);*  
- 		*}*
-*}*  
-
+**@Override**  
+**public void onUpgrade(SQLiteDatabase db, int vAntiga, int vNova) {**  
+**db.execSQL("DROP TABLE IF EXISTS TAB*CLIENTE");**  
+**onCreate(db);**  
+**}**
+**}**  
+```
 Para executar instruções DML é necessário abrir o banco de dados por meio  
 do método *getWritableDatabase* que retorna um objeto do tipo  
 *SQLiteDatabase*;  
