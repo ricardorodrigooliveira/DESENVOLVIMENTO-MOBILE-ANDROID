@@ -31,28 +31,30 @@ Onde:
 * P3 - Cursor padronizado para a pesquisa de dados (pode ser null);
 * P4 - Versão do banco de dados (todas as vezes que a versão é  
 	atualizada, o método OnUpdate é executado).  
+
 ```java	
 public class MeuDb extends SQLiteOpenHelper {
 
-public MeuDb(Context context) {  
-super(context, "MeuDb", null, 1);
-}
+	public MeuDb(Context context) {  
+		super(context, "MeuDb", null, 1);
+	}
  	
-@Override  
-public void onCreate(SQLiteDatabase db) {
-final String sql = "CREATE TABLE TABCLIENTE (CODCLIENTE INTEGER
-PRIMARY KEY AUTOINCREMENT, NOMCLIENTE TEXT)";
-		
-db.execSQL(sql);
-}
+	@Override  
+	public void onCreate(SQLiteDatabase db) {
+		final String sql = "CREATE TABLE TABCLIENTE (CODCLIENTE INTEGER
+		PRIMARY KEY AUTOINCREMENT, NOMCLIENTE TEXT)";
+			
+		db.execSQL(sql);
+	}
  
-@Override  
-public void onUpgrade(SQLiteDatabase db, int vAntiga, int vNova) {  
-db.execSQL("DROP TABLE IF EXISTS TABCLIENTE");  
-onCreate(db);  
-}
+	@Override  
+	public void onUpgrade(SQLiteDatabase db, int vAntiga, int vNova) {  
+		db.execSQL("DROP TABLE IF EXISTS TABCLIENTE");  
+		onCreate(db);  
+	}
 }  
 ```
+
 Para executar instruções DML é necessário abrir o banco de dados por meio  
 do método *getWritableDatabase* que retorna um objeto do tipo  
 **SQLiteDatabase**;  
@@ -75,7 +77,8 @@ Os valores a serem utilizados nas instruções insert e update são encapsulados em
 da classe **ContentValues**;  
 A classe ContentValues possui um método put que permite informarmos pares contendo  
 nome da coluna e valor;  
-Exemplo:  
+Exemplo:
+  
 ```java
 ContentValues cv = new ContentValues();  
 cv.put("NOM_CLIENTE", "JOAO DA SILVA");  
@@ -89,6 +92,7 @@ db.update("TAB_CLIENTE", cv2, "COD_CLIENTE = ?", new String[]{"1"});
 // Apaga o registro onde COD_CLIENTE = 2  
 db.delete("TAB_CLIENTE", "COD_CLIENTE = ?", new String[]{"2"});  
 ```
+
 Consultas podem ser realizadas na base de dados por meio do método **query** da classe  
 **SQLiteDatabase** que retorna um objeto **Cursor**, utilizado para manipular o conjunto de  
 resultados obtidos;  
@@ -97,16 +101,26 @@ resultados obtidos;
 **String P7)**
 
 
-Onde:																		 ------------------------------  
-**P1** - nome da tabela;                    |  Cursor c = db.query(        |  
-**P2** - colunas desejadas;                 |  "TAB*CLIENTE",              |  
-**P3** - cláusula **where**;                    |  new String[]{"NOM*CLIENTE"},|  
-**P4** - parâmetros da cláusula **where**;      |  "COD*CLIENTE = ?",          |  
-**P5** - cláusula **group by**;                 |  new String[]{"3"},          |  
-**P6** - cláusula **having**;                   |  null,                       |  
-**P7** - cláusula **order by**;                 |  null,                       |  
- 	                                      |  "NOM*CLIENTE");             |  
-   	                                     ------------------------------  
+Onde:																		         
+**P1** - nome da tabela;                          
+**P2** - colunas desejadas;                       
+**P3** - cláusula **where**;                      
+**P4** - parâmetros da cláusula **where**;        
+**P5** - cláusula **group by**;                   
+**P6** - cláusula **having**;                     
+**P7** - cláusula **order by**;
+
+```java 
+  Cursor c = db.query(        
+  "TAB*CLIENTE",              
+  new String[]{"NOM*CLIENTE"},
+  "COD*CLIENTE = ?",          
+  new String[]{"3"},          
+  null,                       
+  null,                       
+  "NOM*CLIENTE");                                 
+``` 	                                                
+   	                                             
                                         
 A classe Cursor oferece mecanismos de manipulação dos dados por meio de métodos:
 
@@ -119,15 +133,14 @@ A classe Cursor oferece mecanismos de manipulação dos dados por meio de métodos:
 	especificado no método;  
 * **close()** ? fecha o cursor;  
 
- --------------------------------------------------------------------  
-|Exemplo:                                                            |  
-|	c.moveToFirst();                                                   |  
-|	Log.i("PersistenciaActivity", "Total: " + c.getCount());           |  
-|	do {                                                               |  
-|	 Log.i("PersistenciaActivity",                                     |  
-|	 "COD: " + c.getInt(0) +                                           |  
-|	 " NOME: " + c.getString(1));                                      |  
-|	} while (c.moveToNext());                                          |  
-|	c.close();                                                         |  
- --------------------------------------------------------------------  
-	
+Exemplo:
+```java                                                              
+	c.moveToFirst();                                                     
+	Log.i("PersistenciaActivity", "Total: " + c.getCount());             
+	do {                                                                 
+	 Log.i("PersistenciaActivity",                                       
+	 "COD: " + c.getInt(0) +                                             
+	 " NOME: " + c.getString(1));                                        
+	} while (c.moveToNext());                                            
+	c.close();                                                           
+```	
